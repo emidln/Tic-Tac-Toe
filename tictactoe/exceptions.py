@@ -1,3 +1,4 @@
+from utils import COMPUTER
 
 class TTTBaseException(Exception):
     def __str__(self):
@@ -31,5 +32,8 @@ class GameWin(TTTBaseException):
         self.player = player
 
     def __unicode__(self):
-        return "Player %s won the game!" % self.player
+        if self.player == COMPUTER:
+            return "You have lost the Game!" 
+        else:
+            return "You have won the Game!"
 

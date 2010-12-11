@@ -1,9 +1,8 @@
-from django.views.generic.simple import direct_to_template, redirect_to
+from django.views.generic.simple import direct_to_template
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
-
 
 from models import Board
 from logic import evaluate_gamestate
@@ -15,7 +14,10 @@ from exceptions import *
 # (2) As a consequence of (2), your game could get interrupted or deleted by another person
 ##################33333
 
-# this could be in urls.py, but it may eventually get more complex
+# potential timing issue
+# create a board then go to it. this could theoretically lead to two players
+# trying to play the same game if one issued a request to tictactoe directly after tictactoe_index
+# was called
 def index(request):
     b = Board() 
     b.save()
@@ -28,6 +30,7 @@ def tictactoe(request, board_id):
     d = {'board': b}
     return direct_to_template(request, 'tictactoe/tictactoe.html', extra_context=d )
 
+# ajax update
 def board_update(request, board_id):
     messages = []
     d = {}
@@ -55,17 +58,4 @@ def board_update(request, board_id):
             messages.append('Value passed must be an integer.')
     if messages:
         d['messages'] = messages    
-    return render_to_response('tictactoe/board_update.xml', d, context_instance=RequestContext(request), mimetype='text/xml')
-
-def board_clear(request, board_id):
-    d = {}
-    #if request.is_ajax():
-    if True:
-        try:
-            b = Board.objects.get(pk=board_id)
-            b.latest_l = "000000000"
-            b.save()
-            d['board'] = b
-        except Board.DoesNotExist:
-            pass
     return render_to_response('tictactoe/board_update.xml', d, context_instance=RequestContext(request), mimetype='text/xml')
