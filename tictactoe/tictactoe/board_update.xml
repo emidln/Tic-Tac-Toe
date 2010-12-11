@@ -1,0 +1,26 @@
+<taconite>
+
+{% if board %}
+<replace select="#board">
+    <![CDATA[
+    <div id="board">
+        {{ board.as_t }} 
+    </div>
+    ]]>
+</replace>
+{% endif %}
+
+{% if messages %} 
+<replace select="#messages">
+    <![CDATA[
+    <div id="messages">
+    <h3>A Problem Occured. Please try again.</h3>
+    {% for m in messages %} 
+        <p>{{ m }}</p>
+    {% endfor %}
+    </div>
+    ]]>
+</replace>
+{% endif %}
+
+</taconite>

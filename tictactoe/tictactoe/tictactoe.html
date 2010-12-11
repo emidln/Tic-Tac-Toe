@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %} Tic Tac Toe Sample {% endblock %}
+
+{% block extrahead %} 
+
+<style type="text/css">
+
+table { border: 2px solid black; }
+td { border: 2px solid black; }
+.board { ; }
+.cell { font-size: 2em; padding: 1em; }
+.board_x { background: red; font-size: 3em;}
+.board_o { background: blue; font-size: 3em; }
+.spacer { background: white; padding: 1.5em;}
+
+</style>
+
+<script type="text/javascript">
+$(document).ready(function() { 
+    $('td').live('click', function() {
+        $.get('{% url board_update board.id %}?m=' + ($(this).parent().index()*3+$(this).index()));
+    });
+});
+</script>
+{% endblock %}
+
+
+{% block content %}
+
+<h2>Game #{{ board.id }}</h2>
+<p><a href="{% url tictactoe_index %}">New Game</a></p>
+<div id="board">
+{{ board.as_t }} 
+</div>
+
+<div id="messages">
+</div>
+
+{% endblock %} 

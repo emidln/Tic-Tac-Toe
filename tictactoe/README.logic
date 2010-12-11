@@ -1,0 +1,17 @@
+I noticed that the requirements weren't to win the rather, rather not to lose the game. While draws would happen vs competent opponents each time, a perfect algorithm against an imperfect player stands at least a small chance of winning. Rather than attack the problem of recognizing forks, I broke the strategy of TicTacToe into a series of opening moves. They follow below:
+
+If Opponent plays first in a Corner, play Center. Then:
+
+    (a) If the opponent plays in the opposite (relative them) corner, play a side to force blocking into a draw.
+    (b) If the opponent plays an adjacent side or corner, you must block.
+    (c) If the opponent plays a non-adjacent side, you play an adjacent (relative their corner) corner.
+
+If Opponent plays first in the side, play Center. Then choose the nearest corner relative to their move or any corner if they take the opponent side.
+
+If Opponent plays first in Center, play Corners until you begin blocking. 
+
+If you play first play center, then a non-diagonal corner (relative them). Blocking begins.
+
+If any time after these series of openings you need a move, try block, then take any corner, then take any free space.
+
+Brandon Adams (12/11/2010)
