@@ -1,0 +1,17 @@
+This is a django application that will play tic tac toe with a player. It 
+has a basic but colorful ajax gui and is designed to not lose.
+
+This application was written with Python 2.6 and Django 1.2, but should work
+for Python 2.5 or Python 2.7 as well. It uses a sqlite database and is not 
+particularly taxing on system requires.
+
+To try this application, please note that you'll need to make the files under
+media/ available at your MEDIA_ROOT and/or modify templates/tictactoe/tictactoe.html to
+find it somewhere else.
+
+This was created for a potential interview as recommended by Apex Systems.
+
+Brandon Joseph Adams <emidln@gmail.com>
+
+Tel: +1 217-953-0257
+Skype: emidln
