@@ -10,7 +10,7 @@ O = Opponent
 M = Me
 B = Black Space
 
-If the algorithm doesn't look for a win (which it initially did not), it chooses the remaining corner. this causes the opponent to win.
+If the algorithm doesn't look for a win (which it initially did not), it chooses to block and will thus block the first square it sees as a threat. This causes the opponent to win where it otherwise would not if we looked for a win.
 
 Because of this, I have inserted a win if possible directive before block.
 
