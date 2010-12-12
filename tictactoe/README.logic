@@ -1,3 +1,21 @@
+UPDATE: A superrational opponent who knew my strategy may beat me in this scenario:
+
+Opp Corner, Me Center, Opp Opposite (rel them) corner, Me Side, Opp choose not to block and instead plays opposite corner (rel my last move) into this board position:
+
+OMB
+BMB
+OBO
+
+O = Opponent
+M = Me
+B = Black Space
+
+If the algorithm doesn't look for a win (which it initially did not), it chooses the remaining corner. this causes the opponent to win.
+
+Because of this, I have inserted a win if possible directive before block.
+
+ENDUPDATE
+
 I noticed that the requirements weren't to win the rather, rather not to lose the game. While draws would happen vs competent opponents each time, a perfect algorithm against an imperfect player stands at least a small chance of winning. Rather than attack the problem of recognizing forks, I broke the strategy of TicTacToe into a series of opening moves. They follow below:
 
 If Opponent plays first in a Corner, play Center. Then:

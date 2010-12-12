@@ -47,7 +47,7 @@ def evaluate_gamestate(b):
     elif mc == 3:
         if b[4] == PLAYER:
             # any move made requires a block leading to a draw
-            return block_corner_first(b)    
+            return win_block_corner_first(b)    
         elif b[4] == COMPUTER:
             l = [x for x in b.taken() if b[x] == PLAYER]
             sl = set(l)
@@ -60,7 +60,7 @@ def evaluate_gamestate(b):
                 # opponent in a side
                 if len(sc) == 1:
                     # either block or choose a corner
-                    return block_corner_first(b)
+                    return win_block_corner_first(b)
                 if len(sc) == 2:
                     if sc >= set(1,5):
                         # take middle corner
@@ -71,9 +71,16 @@ def evaluate_gamestate(b):
                         return True        
             else:
                 # all other scenarios are block scenarios
-                return block_corner_first(b)
+                return win_block_corner_first(b)
     else:
-        return block_corner_first(b)
+        return win_block_corner_first(b)
+
+def win(b):
+    p = b.eval_row(2, p=[COMPUTER])
+    if p[1] is not None:
+        b.move(p[1], COMPUTER)
+        return True
+    return False
 
 def block(b):
     p = b.eval_row(2, p=[PLAYER])
@@ -95,8 +102,8 @@ def first(b):
     return True
 
 
-def block_corner_first(b):
-    for x in (block,corner,first):
+def win_block_corner_first(b):
+    for x in (win,block,corner,first):
         r = x(b)
         if r:
             return r
