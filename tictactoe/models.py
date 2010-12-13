@@ -14,7 +14,7 @@ from utils import *
 # * behind the scenes, Board keeps state in squares_l, which is size 9 CharField
 # * conversions are handled as needed where it makes sense
 # * some exceptions are passed transparently. This is purposeful since these exceptions represent 
-#   game events like winning, losing or illegal/undefined actions that the user should know about
+#   game events like winning, losing, drawing or illegal/undefined actions that the user should know about
 class Board(models.Model):
     squares_l = models.CharField(max_length=9,default='000000000')
 
