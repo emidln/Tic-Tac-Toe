@@ -187,11 +187,13 @@ class WebTests(TestCase):
         self.assertEqual(self.client.get('/tictactoe/').status_code,302)
    
     def test_page_50(self):
-        print self.client.get('/tictactoe/50/').status_code
+        self.assertEqual(self.client.get('/tictactoe/50/').status_code, 200)
 
     def test_ajax_as_normal(self):
         self.assertEqual(self.client.get('/tictactoe/50/update/', {'m':4}).status_code,404)
 
     def test_ajax_as_ajax(self):
-        print self.client.get('/tictactoe/50/update/',{'m':4}, HTTP_X_REQUESTED_WITH='XMLHttpRequest').status_code
+        self.assertEqual(self.client.get('/tictactoe/50/update/',{'m':4}, HTTP_X_REQUESTED_WITH='XMLHttpRequest').status_code, 200)
 
+    def test_ajax_as_ajax_no_m(self):
+        self.assertEqual(self.client.get('/tictactoe/50/update/',HTTP_X_REQUESTED_WITH='XMLHttpRequest').status_code, 404)
