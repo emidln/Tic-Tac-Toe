@@ -35,7 +35,10 @@ def board_update(request, board_id):
     if request.is_ajax():
         messages = []
         d = {}
-        m = request.GET.get('m')
+        try:
+            m = request.GET.get('m')
+        except KeyError: 
+            raise Http404()        
         try: 
             b = Board.objects.get(pk=board_id)
             b.free() # will raise GameDraw if no moves are left
@@ -60,4 +63,4 @@ def board_update(request, board_id):
             d['messages'] = messages    
         return render_to_response('tictactoe/board_update.xml', d, context_instance=RequestContext(request), mimetype='text/xml')
     else:
-        raise Http404
+        raise Http404()
