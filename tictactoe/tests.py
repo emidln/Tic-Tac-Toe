@@ -75,20 +75,28 @@ class LogicTests(TestCase):
         pass
 
     def test_win(self):
-        self.reset()
-        self.b.squares_l = '100012200'
-        self.assertRaises(GameWin, win, self.b)
-        self.assertEqual(self.b[8], COMPUTER)
-        self.reset()
-        self.b.squares_l = '100012200'
-        self.assertRaises(GameWin, eg, self.b)
-        self.assertEqual(self.b[8], COMPUTER)
+        def t(f):
+            self.reset()
+            self.b.squares_l = '100012200'
+            self.assertRaises(GameWin, f, self.b)
+            self.assertEqual(self.b[8], COMPUTER)
+        t(win)
+        t(eg)
         
-    def test_defend(self):
-        pass
+    def test_block(self):
+        def t(f):
+            self.reset()
+            self.b.squares_l = '200021100'
+            self.assertEqual(f(self.b), True)
+            self.assertEqual(self.b[8], COMPUTER)
+        t(block)
+        t(eg)
 
     def test_win_before_defend(self):
-        pass
+        self.reset()
+        self.b.squares_l = '220110000'
+        self.assertRaises(GameWin, eg, self.b)
+        self.assertEqual(self.b[5], COMPUTER)
 
     def test_corner(self):
         pass
