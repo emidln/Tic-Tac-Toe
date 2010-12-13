@@ -40,7 +40,7 @@ def evaluate_gamestate(b):
                     b.move(i.pop(),COMPUTER)
                     return True
                 else:
-                    # take the remaining corner
+                    # take a remaining corner
                     i.remove(p)
                     b.move(i.pop(), COMPUTER)  
                     return True
