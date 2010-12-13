@@ -47,6 +47,7 @@ def evaluate_gamestate(b):
     elif mc == 3:
         if b[4] == PLAYER:
             # any move made requires a block leading to a draw
+            # exception still taken care of by wbcf
             return win_block_corner_first(b)    
         elif b[4] == COMPUTER:
             l = [x for x in b.taken() if b[x] == PLAYER]
@@ -62,13 +63,18 @@ def evaluate_gamestate(b):
                     # either block or choose a corner
                     return win_block_corner_first(b)
                 if len(sc) == 2:
-                    if sc >= set(1,5):
-                        # take middle corner
-                        b.move(2,COMPUTER)
-                        return True
-                    if sc >= set(3,7):
-                        b.move(6, COMPUTER)
-                        return True        
+                    forks = (
+                        ((1,5), 2),
+                        ((3,7), 6),
+                        ((1,3), 0),
+                        ((5,7), 8)
+                    )
+                    for fork in forks:
+                        if sc >= set(fork[0]):
+                            b.move(fork[1], COMPUTER)
+                            return True
+                    # opp is on opposite sides and gets to initiate blocking after our move
+                    return win_block_corner_first(b)        
             else:
                 # all other scenarios are block scenarios
                 return win_block_corner_first(b)
