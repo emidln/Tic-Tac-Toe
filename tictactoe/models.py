@@ -119,6 +119,7 @@ class Board(models.Model):
     #
     # raises an exception if c isn't correct
     # raises GameWin if a winner is determined
+    # raises GameDraw if the board state is a draw
     # on success:
     #     returns a list in the form [player, position that wins]
     # on failure:
@@ -131,6 +132,7 @@ class Board(models.Model):
             p = (1,2)
         if rf is None:
             rf = self.row
+        self.free() # raise GameDraw if necessary
         for r in winning_rows:
             tr = rf(r)
             for x in p:
