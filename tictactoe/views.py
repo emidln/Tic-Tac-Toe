@@ -36,7 +36,7 @@ def board_update(request, board_id):
         messages = []
         d = {}
         try:
-            m = request.GET.get('m')
+            m = request.GET['m']
         except KeyError: 
             raise Http404()        
         try: 
