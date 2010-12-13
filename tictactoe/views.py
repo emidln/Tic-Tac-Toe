@@ -2,7 +2,7 @@ from django.views.generic.simple import direct_to_template
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext
 from django.core.urlresolvers import reverse
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, Http404
 
 from models import Board
 from logic import evaluate_gamestate
@@ -32,9 +32,9 @@ def tictactoe(request, board_id):
 
 # ajax update
 def board_update(request, board_id):
-    messages = []
-    d = {}
     if request.is_ajax():
+        messages = []
+        d = {}
         m = request.GET.get('m')
         try: 
             b = Board.objects.get(pk=board_id)
@@ -56,6 +56,8 @@ def board_update(request, board_id):
             messages.append(str(e))
         except ValueError:
             messages.append('Value passed must be an integer.')
-    if messages:
-        d['messages'] = messages    
-    return render_to_response('tictactoe/board_update.xml', d, context_instance=RequestContext(request), mimetype='text/xml')
+        if messages:
+            d['messages'] = messages    
+        return render_to_response('tictactoe/board_update.xml', d, context_instance=RequestContext(request), mimetype='text/xml')
+    else:
+        raise Http404
