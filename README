@@ -3,3 +3,9 @@ Intructions:
 2. Create an app that can interactively play the game of Tic Tac Toe against another player and never lose.
 3. Commit early and often, with good messages.
 4. Push your code back to github and send me a pull request.
+
+---
+Explanation:
+
+This was an original entry several years back. I'm going to clean it up and update for Django 1.6.x, as well
+as PEP-8, pyflakes, etc.
