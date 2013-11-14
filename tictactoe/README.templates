@@ -1,3 +1,0 @@
-The templates consist of a local base which extends a site base as well as an xml data file and the main page. None of them are paritcularly fancy, although tictactoe.html does require title, extrahead, and content blocks to be in your base. JQuery is loaded via Google CDN and Taconite is loaded locally. Taconite is included with this distribution in media/ because it makes ajax less of a hassle. If you're running under the dev server, you'll probably want to read http://docs.djangoproject.com/en/1.2/howto/static-files/
-
-

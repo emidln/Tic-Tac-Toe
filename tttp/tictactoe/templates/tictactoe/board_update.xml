@@ -10,17 +10,16 @@
 </replace>
 {% endif %}
 
-{% if messages %} 
 <replace select="#messages">
     <![CDATA[
-    <div id="messages">
-    <h3>A Problem Occured. Please try again.</h3>
-    {% for m in messages %} 
-        <p>{{ m }}</p>
-    {% endfor %}
-    </div>
+    {% include "tictactoe/messages_snippet.html" %}
     ]]>
 </replace>
+
+{% if not board.active %}
+<eval>
+$(document).off("click", "td");
+</eval>
 {% endif %}
 
 </taconite>

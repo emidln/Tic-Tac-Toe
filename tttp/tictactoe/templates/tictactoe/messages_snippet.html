@@ -1,0 +1,18 @@
+<div id="messages">
+{% if board.winner == 1 %}
+	<h3>Game Over</h3>
+  <p>You have lost!</p>
+{% elif board.winner == 2 %}
+	<h3>Game Over</h3>
+  <p>You have won!</p>
+{% elif board.drawn %}
+	<h3>Game Over</h3>
+  <p>You have drawn!</p>
+{% endif %}
+
+{% if messages %}
+  {% for m in messages %}
+    <p>{{ m }}</p>
+  {% endfor %}
+{% endif %}
+</div>

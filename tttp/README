@@ -1,0 +1,29 @@
+This is a django application that will play tic tac toe with a player. It 
+has a basic but colorful ajax gui and is designed to not lose.
+
+This application was updated to run against Python 2.7 and Django 1.6.
+
+Dependencies are included in pip-requirements.txt. To use (possibly in a virtualenv),
+
+run:
+
+mkvirtualenv tictactoe
+workon tictactoe
+pip install -r pip-requirements.txt
+
+Follow that with setting up the django environment:
+
+python manage.py test
+python manage.py syncdb --noinput
+python manage.py collectstatic --noinput
+python manage.py runserver
+
+Navigate to http://localhost:8000/tictactoe/
+
+This was created for a potential interview as recommended by Apex Systems. (late 2010)
+This was updated for a potential interview as recommended by Cypress. (late 2013)
+
+Brandon Joseph Adams <emidln@gmail.com>
+
+Tel: +1 217-953-0257
+Skype: emidln
