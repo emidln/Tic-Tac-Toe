@@ -9,3 +9,22 @@ Explanation:
 
 This was an original entry several years back. I'm going to clean it up and update for Django 1.6.x, as well
 as PEP-8, pyflakes, etc.
+
+-- 
+Updated:
+
+I updated my original tictactoe app to be slightly more maintainable. After three years, Taconite and jQuery had newer supported versions and Django has had 4-5 major versions. I updated both the Python and Javascript where deprecated (or removed, look at you function-based generic views). I simplified and retackled the naming ceremony with tictactoe.models.Board.eval_row since it had no real reason to be as customizable as it was (passing in the row resolving function). I switched most of the comments to docstrings. I made the docstrings pass
+my validation tools like pep8/pylint/pyflakes. In general, everything now passes those three tools with their default settings. I note when something doesn't pass and explain it.
+
+In retrospect, using exceptions in application-meaningful way was a huge maintainability win. I came in and immediately understood what my app was doing. My original usage of extremely short variable names didn't stand the test of time. While I understood what was going on, things like the eval_row made me think harder than would have otherwise been necessary. Consequently, I rewrote that function to have better naming. logic.py survived almost unscathed (I switched up the p argument in eval_row to players, and that change needed to be reflected), otherwise the logic and testing remains solid.
+
+I included tttp, which is a full django project. It utilizes one custom app called tictactoe. To utilize:
+
+1. mkvirtualenv tictactoe
+2. workon tictactoe
+3. pip install -r tttp/requirements.txt
+4. cd tttp
+5. python manage.py syncdb --noinput && python manage.py collectstatic --noinput && python manage.py runserver
+6. Navigate to http://localhost:8000/tictactoe/ for a new game
+
+More details are included in the README and README.logic.
