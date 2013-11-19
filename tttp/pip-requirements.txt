@@ -1,0 +1,12 @@
+Django==1.6
+Pygments==1.6
+argparse==1.2.1
+fancycompleter==0.4
+ipython==1.1.0
+jedi==0.7.0
+pdbpp==0.7.2
+pep8==1.4.6
+pyflakes==0.7.3
+pyrepl==0.8.4
+wmctrl==0.1
+wsgiref==0.1.2
